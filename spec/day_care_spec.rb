@@ -8,12 +8,17 @@ RSpec.describe DayCare do
     @day_care2 = DayCare.new("Kitty Paradise")
 
     @joel = Customer.new("Joel", 2)
+    @sara = Customer.new("Sara", 4)
 
     @samson = Pet.new({name: "Samson", type: :dog})
     @lucy = Pet.new({name: "Lucy", type: :cat})
+    @felix = Pet.new({name: "Felix", type: :cat})
+    @scout = Pet.new({name: "Scout", type: :dog})
 
     @joel.adopt(@samson)
     @joel.adopt(@lucy)
+    @sara.adopt(@felix)
+    @sara.adopt(@scout)
   end
 
   it 'exists' do
@@ -33,16 +38,20 @@ RSpec.describe DayCare do
 
   it 'can have customers with pets' do
     @day_care1.add_customer(@joel)
-    expect(@day_care1.customers).to eq([@joel])
+    @day_care1.add_customer(@sara)
+    expect(@day_care1.customers).to eq([@joel, @sara])
   end
 
   it 'customer can be found by id' do
     @day_care1.add_customer(@joel)
+    @day_care1.add_customer(@sara)
     expect(@day_care1.find_by_id(2)).to eq("Joel")
+    expect(@day_care1.find_by_id(4)).to eq("Sara")
   end
 
   it 'can return the amount of pets that are unfed' do
     @day_care1.add_customer(@joel)
+    @day_care1.add_customer(@sara)
     expect(@day_care1.un_fed_pets).to eq([@samson, @lucy])
   end
 end

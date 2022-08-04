@@ -15,10 +15,10 @@ class DayCare
     cust = []
     @customers.each do |customer|
       if customer.id == id
-        cust << customer
+        cust << customer.name
       end
     end
-    cust.first.name
+    cust.first
   end
 
   def un_fed_pets
