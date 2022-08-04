@@ -20,7 +20,7 @@ RSpec.describe Customer do
   end
 
   it "can adopt new pets" do
-    samson = Pet.new({name: "Samson", type: :dog})
+    samson = Pet.new({name: "Samson", type: :dog, age: 4})
     lucy = Pet.new({name: "Lucy", type: :cat})
 
     @joel.adopt(samson)
